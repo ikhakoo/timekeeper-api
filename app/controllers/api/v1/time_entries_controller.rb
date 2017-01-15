@@ -28,6 +28,7 @@ class Api::V1::TimeEntriesController < ApplicationController
   # PATCH/PUT /api/v1/time_entries/1
   def update
     if @time_entry.update(time_entry_params)
+      check_time_entry_card_count(time_entry)
       render json: @time_entry
     else
       render json: @time_entry.errors, status: :unprocessable_entity
@@ -37,7 +38,9 @@ class Api::V1::TimeEntriesController < ApplicationController
   # DELETE /api/v1/time_entries/1
   def destroy
     if @time_entry.present?
-      @time_entry.destroy, head :ok
+      @time_entry.destroy 
+      set_total_hours_to_nil(time_entry)
+      head :ok
     else
       render json: @time_entry.errors, status: :unprocessable_entity
     end
@@ -61,6 +64,13 @@ class Api::V1::TimeEntriesController < ApplicationController
 
     def calculate_total_hours(time_card)
       time_card.update!(total_hours: ((time_card.entries.second.time - time_card.entries.first.time) / 1.hour).round)
+    end
+
+    def set_total_hours_to_nil(time_entry)
+      time_card = time_entry.time_card
+      if time_card.present? && time_card.total_hours.present?
+        time_card.update(total_hours: nil)
+      end
     end
 
 end

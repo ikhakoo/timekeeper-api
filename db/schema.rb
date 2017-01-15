@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 20170115181658) do
   create_table "time_cards", force: :cascade do |t|
     t.string   "username"
     t.date     "occurrence"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "total_hours"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "time_entries", force: :cascade do |t|

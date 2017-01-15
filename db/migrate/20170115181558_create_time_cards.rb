@@ -3,7 +3,7 @@ class CreateTimeCards < ActiveRecord::Migration[5.0]
     create_table :time_cards do |t|
       t.string :username
       t.date :occurrence
-      t.total_hours :float
+      t.float :total_hours
 
       t.timestamps
     end
