@@ -7,13 +7,13 @@ class TimeEntry < ApplicationRecord
 
   def check_time_entry_card_count
     time_card = self.time_card
-    if time_card.present? && time_card.entries.count == 2
-      calculate_total_hours(time_card)
+    if time_card.present? && time_card.time_entries.count == 2
+      calculate_total_hours
     end
   end
 
   def calculate_total_hours
-    total_hours = ((time_card.entries.second.time - time_card.entries.first.time) / 1.hour).round(2)
+    total_hours = ((time_card.time_entries.last.time - time_card.time_entries.first.time) / 1.hour).round(2)
     time_card.update!(total_hours: total_hours)
   end
 

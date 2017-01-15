@@ -18,7 +18,7 @@ class Api::V1::TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.new(time_entry_params)
 
     if @time_entry.save
-      render json: @time_entry, status: :created, location: @time_entry
+      render json: @time_entry, status: :created
     else
       render json: @time_entry.errors, status: :unprocessable_entity
     end
