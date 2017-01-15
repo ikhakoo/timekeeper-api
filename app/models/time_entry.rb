@@ -5,9 +5,11 @@ class TimeEntry < ApplicationRecord
 
   belongs_to :time_card
 
+  validates :time, presence: true
+
   def check_time_entry_card_count
     time_card = self.time_card
-    if time_card.present? && time_card.time_entries.count == 2
+    if time_card.present? && time_card.time_entries.count >= 2
       calculate_total_hours
     end
   end
