@@ -1,6 +1,6 @@
 class TimeEntry < ApplicationRecord
   
-  after_create :check_time_entry_card_count
+  after_save :check_time_entry_card_count
   after_destroy :set_total_hours_to_nil
 
   belongs_to :time_card

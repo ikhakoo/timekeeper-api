@@ -18,7 +18,6 @@ class Api::V1::TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.new(time_entry_params)
 
     if @time_entry.save
-      check_time_entry_card_count(time_entry)
       render json: @time_entry, status: :created, location: @time_entry
     else
       render json: @time_entry.errors, status: :unprocessable_entity
@@ -28,7 +27,6 @@ class Api::V1::TimeEntriesController < ApplicationController
   # PATCH/PUT /api/v1/time_entries/1
   def update
     if @time_entry.update(time_entry_params)
-      check_time_entry_card_count(time_entry)
       render json: @time_entry
     else
       render json: @time_entry.errors, status: :unprocessable_entity
@@ -39,7 +37,6 @@ class Api::V1::TimeEntriesController < ApplicationController
   def destroy
     if @time_entry.present?
       @time_entry.destroy 
-      set_total_hours_to_nil(time_entry)
       head :ok
     else
       render json: @time_entry.errors, status: :unprocessable_entity
