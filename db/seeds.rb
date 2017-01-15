@@ -10,4 +10,5 @@ users = ["John", "Mike", "Jill", "Mary", "Mark"]
 users.each do |user| 
 	t = TimeCard.create!(username: user, occurrence: Date.today)
 	t.time_entries.create!(time: Time.now)
+	t.time_entries.create!(time: Time.now + rand(1..4).hour)
 end
