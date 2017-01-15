@@ -63,7 +63,8 @@ class Api::V1::TimeEntriesController < ApplicationController
     end
 
     def calculate_total_hours(time_card)
-      time_card.update!(total_hours: ((time_card.entries.second.time - time_card.entries.first.time) / 1.hour).round)
+      total_hours = ((time_card.entries.second.time - time_card.entries.first.time) / 1.hour).round(2)
+      time_card.update!(total_hours: total_hours)
     end
 
     def set_total_hours_to_nil(time_entry)
