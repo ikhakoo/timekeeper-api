@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  occurrence: 2017-01-15 13:15:59
+
+two:
+  username: MyString
+  occurrence: 2017-01-15 13:15:59
