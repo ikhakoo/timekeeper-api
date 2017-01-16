@@ -6,12 +6,11 @@ After reading the spec, it made the most sense to create this as an API only app
 
 `rails new timekeeper-api --api`
 
-Again, based on the spec it made most sense to create 2 models as suggested.
-There was no documentation pertaining towards `total_hours` so I figured I had to options here with the simplest being adding a field called `total_hours` on the time_card model. The other way is the way through a helper method but I thought it would be nice to include it in the JSON output.
+I then create 2 models as suggested. There was no documentation pertaining towards `total_hours` so I figured I had two options here with the simplest being adding a field called `total_hours` on the time_card model. The other way is the way through a helper method but I thought it would be nice to include it in the JSON output.
 
 I then created 2 controllers which inhert from `ApplicationController`, which in turn inherits from `ActionController::API`. The standard rails routing for conventional routing was used to enable the controller methods. The routes were also namespaced according to the spec.
 
-All of the controller methods are based on standard RESTful routing and can be queried using basic cURL commands. Here is an example of the cURL command to create a time_card object:
+All of the controller methods are based on standard RESTful routing and can be accessed using basic cURL commands. Here is an example of the cURL command to create a time_card object:
 
 `curl -H "Content-Type: application/json" -X POST -d '{"username":"Mike","occurrence":"2017-01-15"}' http://localhost:3000/api/v1/time_cards`
 
@@ -25,11 +24,11 @@ This method is called after the time_entry is saved. This method checks to see i
 
 3. The final method is: `set_total_hours_to_nil`. It is called in an `after_delete` allowing it to set the total_hours field on the time_card object to nil.
 
-All in all, the application runs to spec.
-
 To have some data to play with I added a simple seed.
 
 run `rake db:seed` or `rails db:seed` to seed the database.
+
+All in all, the application runs to spec.
 
 
 Trade-offs:
