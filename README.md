@@ -8,9 +8,9 @@ After reading the spec, it made the most sense to create this as an API only app
 
 I then create 2 models as suggested. There was no documentation pertaining towards `total_hours` so I figured I had two options here with the simplest being adding a field called `total_hours` on the time_card model. The other way is the way through a helper method but I thought it would be nice to include it in the JSON output.
 
-I then created 2 controllers which inhert from `ApplicationController`, which in turn inherits from `ActionController::API`. The standard rails routing for conventional routing was used to enable the controller methods. The routes were also namespaced according to the spec.
+I then created 2 controllers which inhert from `ApplicationController`, which in turn inherits from `ActionController::API`. RESTful routing was used to enable the controller methods. The routes were also namespaced according to the spec.
 
-All of the controller methods are based on standard RESTful routing and can be accessed using basic cURL commands. Here is an example of the cURL command to create a time_card object:
+Here is an example of the cURL command to create a time_card object:
 
 `curl -H "Content-Type: application/json" -X POST -d '{"username":"Mike","occurrence":"2017-01-15"}' http://localhost:3000/api/v1/time_cards`
 
