@@ -28,7 +28,9 @@ gem 'puma', '~> 3.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'best_debugger'
+  # This is a gem I built for wrapping development_tools I use 
+  # https://rubygems.org/gems/best_debugger/versions/1.0
+  gem 'best_debugger' 
 end
 
 group :development do

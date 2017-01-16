@@ -1,5 +1,6 @@
 class Api::V1::TimeEntriesController < ApplicationController
   before_action :set_time_entry, only: [:show, :update, :destroy]
+  before_action :set_time_card,  only: :create
 
   # GET /api/v1/time_entries
   def index
@@ -15,7 +16,7 @@ class Api::V1::TimeEntriesController < ApplicationController
 
   # POST /api/v1/time_entries
   def create
-    @time_entry = TimeEntry.new(time_entry_params)
+    @time_entry = @time_card.time_entries.build(time_entry_params)
 
     if @time_entry.save
       render json: @time_entry, status: :created
@@ -46,6 +47,10 @@ class Api::V1::TimeEntriesController < ApplicationController
   private
     def set_time_entry
       @time_entry = TimeEntry.find(params[:id])
+    end
+
+    def set_time_card
+      @time_card = TimeCard.find(params[:time_card_id])
     end
 
     def time_entry_params
